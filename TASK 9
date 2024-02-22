@@ -1,0 +1,36 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+
+// Функція minSteps приймає два аргументи x та y і повертає мінімальну кількість кроків, 
+// необхідну для переходу від x до y.
+int minSteps(int x, int y) { 
+    int diff = y - x; 
+    if (diff < 0) { 
+        diff = -diff;  // Розраховуємо різницю між x та y та замінюємо її на її абсолютне значення
+    } 
+
+    int steps = 0; 
+    while (diff > 0) { 
+        if (diff == 1 || diff == 2) { 
+            steps += diff;  // Якщо різниця становить 1 або 2, то додаємо цю різницю до кількості кроків та завершуємо цикл
+            break; 
+        } 
+        steps += diff / 2;  // Додаємо половину різниці до кількості кроків
+        diff = diff % 2 + 1;  // Оновлюємо різницю, залишаючи лише 1 або 2 як нову різницю
+    } 
+
+    return steps;  // Повертаємо кількість кроків
+} 
+
+int main() { 
+    int x, y; 
+    printf( "Enter x: "); 
+    scanf("%d", &x); 
+    printf("Enter y: "); 
+    scanf("%d", &y); 
+
+    int result = minSteps(x, y);  // Викликаємо функцію minSteps для обчислення мінімальної кількості кроків
+    printf("Minimum number of steps: %d\n", result); 
+
+    return 0; 
+}
